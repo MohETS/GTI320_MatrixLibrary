@@ -52,6 +52,11 @@ namespace gti320 {
 	{
 		// TODO affecter la valeur 0.0 partout, sauf sur la diagonale principale où c'est 1.0.
 		//      Note: ceci est une redéfinition d'une fonction membre!
+		memset(m_storage.data(), 0, size() * sizeof(double));
+		for (size_t i = 0; i < this->cols(); ++i)
+		{
+			m_storage.data()[(i * this->cols()) + i] = 1;
+		}
 	}
 
 	/**
@@ -65,7 +70,22 @@ namespace gti320 {
 	inline Matrix4d Matrix4d::inverse() const
 	{
 		// TODO : implémenter
-		return Matrix4d(); // Pas bon, à changer
+		Matrix4d inversedMatrix;
+		inversedMatrix.setZero();
+
+		for (size_t j = 0; j < 3; ++j)
+		{
+			for (size_t i = 0; i < 3; ++i)
+			{
+				inversedMatrix(i, j) = data()[(i * 4) + j];
+				inversedMatrix(i, 3) += inversedMatrix(i, j) * -data()[(3 * 4) + j];
+				
+			}
+		}
+		inversedMatrix(3, 3) = 1;
+
+		return inversedMatrix;
+		//return Matrix4d(); // Pas bon, à changer
 	}
 
 	/**
@@ -77,7 +97,15 @@ namespace gti320 {
 	inline Matrix3d Matrix3d::inverse() const
 	{
 		// TODO : implémenter
-		return Matrix3d();
+		Matrix3d inversedMatrix;
+		for (size_t j = 0; j < 3; ++j)
+		{
+			for (size_t i = 0; i < 3; ++i)
+			{
+				inversedMatrix(i, j) = data()[(i * 3) + j];
+			}
+		}
+		return inversedMatrix;
 	}
 
 
@@ -89,7 +117,20 @@ namespace gti320 {
 	Vector<_Scalar, 3> operator*(const Matrix<_Scalar, 4, 4, ColumnStorage>& A, const Vector<_Scalar, 3>& v)
 	{
 		// TODO : implémenter
-		return Vector<_Scalar, 3>(); // pas bon, à changer
+		Vector<_Scalar, 3> newVector;
+		newVector.setZero();
+		_Scalar u[4] = { v(0),v(1),v(2),1 };
+
+		for (size_t j = 0; j < 4; ++j)
+		{
+			//_Scalar u = v(j);
+			for (size_t i = 0; i < 3; ++i)
+			{
+				newVector(i) += A(i, j) * u[j];
+			}
+		}
+		return newVector;
+		//return Vector<_Scalar, 3>(); // pas bon, à changer
 	}
 
 
@@ -103,8 +144,29 @@ namespace gti320 {
 	static Matrix<_Scalar, 3, 3> makeRotation(_Scalar x, _Scalar y, _Scalar z)
 	{
 		// TODO : implémenter
+		Matrix3d rotationMatrix;
 
-		return Matrix<_Scalar, 3, 3>(); //	 pas bon, à changer
+		double cosX = cos(x), sinX = sin(x);
+		double cosY = cos(y), sinY = sin(y);
+		double cosZ = cos(z), sinZ = sin(z);
+
+		//Premiere Colonne
+		rotationMatrix(0, 0) = cosY * cosZ;
+		rotationMatrix(1, 0) = cosY * sinZ;
+		rotationMatrix(2, 0) = -sinY;
+
+
+		//Deuxieme Colonne
+		rotationMatrix(0, 1) = (sinX * sinY * cosZ) - (cosX * sinZ);
+		rotationMatrix(1, 1) = (sinX * sinY * sinZ) + (cosX * cosZ);
+		rotationMatrix(2, 1) = sinX * cosY;
+
+		//Troisieme Colonne
+		rotationMatrix(0, 2) = (cosX * sinY * cosZ) + (sinX * sinZ);
+		rotationMatrix(1, 2) = (cosX * sinY * sinZ) - (sinX * cosZ);
+		rotationMatrix(2, 2) = cosX * cosY;
+
+		return rotationMatrix;
 	}
 
 }

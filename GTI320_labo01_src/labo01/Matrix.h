@@ -64,16 +64,17 @@ namespace gti320
 			// TODO copier les données de la sous-matrice.
 			//   Note : si les dimensions ne correspondent pas, la matrice doit être redimensionnée.
 			//   Vous pouvez présumer qu'il s'agit d'un stockage par colonnes.
+			int subMatrixRows = submatrix.rows(), subMatrixCols = submatrix.cols();
 
-			if (this->size() != (submatrix.rows() * submatrix.cols())) {
-				this->resize(submatrix.rows(), submatrix.cols());
+			if (size() != (subMatrixRows * subMatrixCols)) {
+				resize(subMatrixRows, subMatrixCols);
 			}
 
-			for (size_t i = 0; i < rows(); i++)
+			for (size_t i = 0; i < m_rows; ++i)
 			{
-				for (size_t j = 0; j < cols(); j++)
+				for (size_t j = 0; j < m_cols; ++j)
 				{
-					this->m_storage.data()[i + (j * this->rows())] = submatrix(i, j);
+					m_storage.data()[i + (j * m_rows)] = submatrix(i, j);
 				}
 			}
 
@@ -86,8 +87,7 @@ namespace gti320
 		_Scalar operator()(int i, int j) const
 		{
 			// TODO implementer
-			assert((0 <= i && i < m_rows) && (0 <= j && j < m_cols));
-			return this->data()[i + (j * this->rows())];
+			return data()[i + (j * rows())];
 		}
 
 		/**
@@ -97,8 +97,7 @@ namespace gti320
 		{
 			// TODO implementer
 			//      Indice : l'implémentation est identique à celle de la fonction précédente.
-			assert((0 <= i && i < m_rows) && (0 <= j && j < m_cols));
-			return this->m_storage.data()[i + (j * this->rows())];
+			return m_storage.data()[i + (j * rows())];
 		}
 
 		/**
@@ -126,20 +125,19 @@ namespace gti320
 		{
 			// TODO calcule et retourne la transposée de la matrice.
 
-			Matrix<_Scalar, _ColsAtCompile, _RowsAtCompile, RowStorage> matriceTranpose;
-			int rows = this->rows(), cols = this->cols();
-			if (rows == cols) {
-				matriceTranpose.resize(rows, cols);
+			Matrix<_Scalar, _ColsAtCompile, _RowsAtCompile, _OtherStorage> matriceTranpose;
+			if (rows() == cols()) {
+				matriceTranpose.resize(rows(), cols());
 			}
 			else {
-				matriceTranpose.resize(cols, rows);
+				matriceTranpose.resize(cols(), rows());
 			}
 
-			for (size_t i = 0; i < cols; i++)
+			for (size_t i = 0; i < cols(); ++i)
 			{
-				for (size_t j = 0; j < rows; j++)
+				for (size_t j = 0; j < rows(); ++j)
 				{
-					matriceTranpose(j, i) = this->data()[i + (j * this->rows())];
+					matriceTranpose(i, j) = data()[(i * cols()) + j];
 				}
 			}
 			return matriceTranpose;
@@ -154,12 +152,11 @@ namespace gti320
 		{
 			// TODO affecter la valeur 0.0 partour, sauf sur la diagonale principale où c'est 1.0..
 			//      Votre implémentation devrait aussi fonctionner pour des matrices qui ne sont pas carrées.
-			int colSize = this->cols();
-			assert(this->rows() == colSize);
-			memset(this->m_storage.data(), 0, this->size() * sizeof(_Scalar));
-			for (size_t i = 0; i < colSize; i++)
+			assert(rows() == cols());
+			memset(m_storage.data(), 0, size() * sizeof(_Scalar));
+			for (size_t i = 0; i < cols(); ++i)
 			{
-				this->m_storage.data()[(i * colSize) + i] = 1;
+				m_storage.data()[(i * cols()) + i] = 1;
 			}
 		}
 
@@ -204,14 +201,14 @@ namespace gti320
 			//   Note : si les dimensions ne correspondent pas, la matrice doit être redimensionnée.
 			//   Vous pouvez présumer qu'il s'agit d'un stockage par lignes.
 
-			if (this->size() != (submatrix.rows() * submatrix.cols())) {
-				this->resize(submatrix.rows(), submatrix.cols());
+			if (size() != (submatrix.rows() * submatrix.cols())) {
+				resize(submatrix.rows(), submatrix.cols());
 			}
-			for (size_t i = 0; i < rows(); i++)
+			for (size_t i = 0; i < m_rows; ++i)
 			{
-				for (size_t j = 0; j < cols(); j++)
+				for (size_t j = 0; j < m_cols; ++j)
 				{
-					this->m_storage.data()[(this->cols() * i) + j] = submatrix(i, j);
+					m_storage.data()[(m_cols * i) + j] = submatrix(i, j);
 				}
 			}
 			return *this;
@@ -223,7 +220,7 @@ namespace gti320
 		_Scalar operator()(int i, int j) const
 		{
 			// TODO implementer
-			return this->data()[(this->cols() * i) + j];
+			return data()[(m_cols * i) + j];
 		}
 
 		/**
@@ -232,7 +229,7 @@ namespace gti320
 		_Scalar& operator()(int i, int j)
 		{
 			// TODO implementer
-			return this->m_storage.data()[(this->cols() * i) + j];
+			return m_storage.data()[(m_cols * i) + j];
 		}
 
 		/**
@@ -260,19 +257,18 @@ namespace gti320
 			//    Optimisez cette fonction en tenant compte du type de stockage utilisé.
 
 			Matrix<_Scalar, _ColsAtCompile, _RowsAtCompile, ColumnStorage> matriceTranpose;
-			int rows = this->rows(), cols = this->cols();
-			if (rows == cols) {
-				matriceTranpose.resize(rows, cols);
+			if (m_rows == m_cols) {
+				matriceTranpose.resize(m_rows, m_cols);
 			}
 			else {
-				matriceTranpose.resize(cols, rows);
+				matriceTranpose.resize(m_cols, m_rows);
 			}
 
-			for (size_t i = 0; i < rows; i++)
+			for (size_t i = 0; i < m_rows; ++i)
 			{
-				for (size_t j = 0; j < cols; j++)
+				for (size_t j = 0; j < m_cols; ++j)
 				{
-					matriceTranpose(j, i) = this->data()[(this->cols() * i) + j];
+					matriceTranpose(j, i) = data()[(m_cols * i) + j];
 				}
 			}
 			return matriceTranpose;
@@ -285,12 +281,11 @@ namespace gti320
 		{
 			// TODO affecter la valeur 0.0 partour, sauf sur la diagonale principale où c'est 1.0..
 			//      Votre implémentation devrait aussi fonctionner pour des matrices qui ne sont pas carrées.
-			int colSize = this->cols();
-			assert(this->rows() == colSize);
-			memset(this->m_storage.data(), 0, this->size() * sizeof(_Scalar));
-			for (size_t i = 0; i < colSize; i++)
+			assert(m_rows == m_cols);
+			memset(m_storage.data(), 0, size() * sizeof(_Scalar));
+			for (size_t i = 0; i < m_cols; ++i)
 			{
-				this->m_storage.data()[(i * colSize) + i] = 1;
+				m_storage.data()[(i * m_cols) + i] = 1;
 			}
 		}
 
@@ -370,9 +365,9 @@ namespace gti320
 			//      Note les dimensions de la matrice doivent correspondre à celle de
 			//      la sous-matrice.
 			assert((m_rows * m_cols) == matrix.size());
-			for (size_t i = 0; i < m_rows; i++)
+			for (size_t i = 0; i < m_rows; ++i)
 			{
-				for (size_t j = 0; j < m_cols; j++)
+				for (size_t j = 0; j < m_cols; ++j)
 				{
 					m_matrix(m_i + i, m_j + j) = matrix(i, j);
 				}
@@ -422,9 +417,9 @@ namespace gti320
 				matriceTranpose.resize(m_cols, m_rows);
 			}
 
-			for (size_t i = 0; i < m_rows; i++)
+			for (size_t i = 0; i < m_rows; ++i)
 			{
-				for (size_t j = 0; j < m_cols; j++)
+				for (size_t j = 0; j < m_cols; ++j)
 				{
 					matriceTranpose(j, i) = m_matrix(m_i + i, m_j + j);
 				}

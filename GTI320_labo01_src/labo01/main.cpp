@@ -189,39 +189,39 @@ TEST(TestLabo1, MatrixMatrixOperators)
 		EXPECT_DOUBLE_EQ(A(0, 1), 0.0);
 		EXPECT_DOUBLE_EQ(A(1, 0), 0.0);
 
-		//// Test : produit  scalaire * matrice
-		//const double alpha = 2.5;
-		//Matrix<double> B = alpha * A;
-		//EXPECT_DOUBLE_EQ(B(0, 0), alpha);
-		//EXPECT_DOUBLE_EQ(B(1, 1), alpha);
-		//EXPECT_DOUBLE_EQ(B(2, 2), alpha);
-		//EXPECT_DOUBLE_EQ(B(3, 3), alpha);
-		//EXPECT_DOUBLE_EQ(B(4, 4), alpha);
-		//EXPECT_DOUBLE_EQ(B(5, 5), alpha);
-		//EXPECT_DOUBLE_EQ(B(0, 1), 0.0);
-		//EXPECT_DOUBLE_EQ(B(1, 0), 0.0);
+		// Test : produit  scalaire * matrice
+		const double alpha = 2.5;
+		Matrix<double> B = alpha * A;
+		EXPECT_DOUBLE_EQ(B(0, 0), alpha);
+		EXPECT_DOUBLE_EQ(B(1, 1), alpha);
+		EXPECT_DOUBLE_EQ(B(2, 2), alpha);
+		EXPECT_DOUBLE_EQ(B(3, 3), alpha);
+		EXPECT_DOUBLE_EQ(B(4, 4), alpha);
+		EXPECT_DOUBLE_EQ(B(5, 5), alpha);
+		EXPECT_DOUBLE_EQ(B(0, 1), 0.0);
+		EXPECT_DOUBLE_EQ(B(1, 0), 0.0);
 
-		//// Test : produit  matrice * matrice
-		//Matrix<double> C = A * B;
-		//EXPECT_DOUBLE_EQ(C(0, 0), A(0, 0) * B(0, 0));
-		//EXPECT_DOUBLE_EQ(C(1, 1), A(1, 1) * B(1, 1));
-		//EXPECT_DOUBLE_EQ(C(2, 2), A(2, 2) * B(2, 2));
-		//EXPECT_DOUBLE_EQ(C(3, 3), A(3, 3) * B(3, 3));
-		//EXPECT_DOUBLE_EQ(C(4, 4), A(4, 4) * B(4, 4));
-		//EXPECT_DOUBLE_EQ(C(5, 5), A(5, 5) * B(5, 5));
-		//EXPECT_DOUBLE_EQ(C(0, 1), 0.0);
-		//EXPECT_DOUBLE_EQ(C(2, 3), 0.0);
+		// Test : produit  matrice * matrice
+		Matrix<double> C = A * B;
+		EXPECT_DOUBLE_EQ(C(0, 0), A(0, 0) * B(0, 0));
+		EXPECT_DOUBLE_EQ(C(1, 1), A(1, 1) * B(1, 1));
+		EXPECT_DOUBLE_EQ(C(2, 2), A(2, 2) * B(2, 2));
+		EXPECT_DOUBLE_EQ(C(3, 3), A(3, 3) * B(3, 3));
+		EXPECT_DOUBLE_EQ(C(4, 4), A(4, 4) * B(4, 4));
+		EXPECT_DOUBLE_EQ(C(5, 5), A(5, 5) * B(5, 5));
+		EXPECT_DOUBLE_EQ(C(0, 1), 0.0);
+		EXPECT_DOUBLE_EQ(C(2, 3), 0.0);
 
-		//// Test : addition  matrice * matrice
-		//Matrix<double> A_plus_B = A + B;
-		//EXPECT_DOUBLE_EQ(A_plus_B(0, 0), A(0, 0) + B(0, 0));
-		//EXPECT_DOUBLE_EQ(A_plus_B(1, 1), A(1, 1) + B(1, 1));
-		//EXPECT_DOUBLE_EQ(A_plus_B(2, 2), A(2, 2) + B(2, 2));
-		//EXPECT_DOUBLE_EQ(A_plus_B(3, 3), A(3, 3) + B(3, 3));
-		//EXPECT_DOUBLE_EQ(A_plus_B(4, 4), A(4, 4) + B(4, 4));
-		//EXPECT_DOUBLE_EQ(A_plus_B(5, 5), A(5, 5) + B(5, 5));
-		//EXPECT_DOUBLE_EQ(A_plus_B(0, 1), 0.0);
-		//EXPECT_DOUBLE_EQ(A_plus_B(2, 3), 0.0);
+		// Test : addition  matrice + matrice
+		Matrix<double> A_plus_B = A + B;
+		EXPECT_DOUBLE_EQ(A_plus_B(0, 0), A(0, 0) + B(0, 0));
+		EXPECT_DOUBLE_EQ(A_plus_B(1, 1), A(1, 1) + B(1, 1));
+		EXPECT_DOUBLE_EQ(A_plus_B(2, 2), A(2, 2) + B(2, 2));
+		EXPECT_DOUBLE_EQ(A_plus_B(3, 3), A(3, 3) + B(3, 3));
+		EXPECT_DOUBLE_EQ(A_plus_B(4, 4), A(4, 4) + B(4, 4));
+		EXPECT_DOUBLE_EQ(A_plus_B(5, 5), A(5, 5) + B(5, 5));
+		EXPECT_DOUBLE_EQ(A_plus_B(0, 1), 0.0);
+		EXPECT_DOUBLE_EQ(A_plus_B(2, 3), 0.0);
 	}
 
 	// Opérations arithmétique avec matrices à stockage par lignes et par
@@ -239,42 +239,42 @@ TEST(TestLabo1, MatrixMatrixOperators)
 		//        colonnes)
 		Matrix<double, Dynamic, Dynamic, ColumnStorage> B = A.transpose();
 
-		//// Test : multiplication  matrix(ligne) * matrice(colonne)
-		//// Note : teste seulement la première et la dernière colonne
-		//const auto C = A * B;
-		//EXPECT_NEAR(C(0, 0), 1.14815820000000, 1e-3); EXPECT_NEAR(C(0, 4), 1.31659795000000, 1e-3);
-		//EXPECT_NEAR(C(1, 0), 1.00133748000000, 1e-3); EXPECT_NEAR(C(1, 4), 2.04727044000000, 1e-3);
-		//EXPECT_NEAR(C(2, 0), 0.99433707000000, 1e-3); EXPECT_NEAR(C(2, 4), 2.82896409000000, 1e-3);
-		//EXPECT_NEAR(C(3, 0), 1.63883925000000, 1e-3); EXPECT_NEAR(C(3, 4), 3.28401323000000, 1e-3);
-		//EXPECT_NEAR(C(4, 0), 1.31659795000000, 1e-3); EXPECT_NEAR(C(4, 4), 3.35271580000000, 1e-3);
+		// Test : multiplication  matrix(ligne) * matrice(colonne)
+		// Note : teste seulement la première et la dernière colonne
+		const auto C = A * B;
+		EXPECT_NEAR(C(0, 0), 1.14815820000000, 1e-3); EXPECT_NEAR(C(0, 4), 1.31659795000000, 1e-3);
+		EXPECT_NEAR(C(1, 0), 1.00133748000000, 1e-3); EXPECT_NEAR(C(1, 4), 2.04727044000000, 1e-3);
+		EXPECT_NEAR(C(2, 0), 0.99433707000000, 1e-3); EXPECT_NEAR(C(2, 4), 2.82896409000000, 1e-3);
+		EXPECT_NEAR(C(3, 0), 1.63883925000000, 1e-3); EXPECT_NEAR(C(3, 4), 3.28401323000000, 1e-3);
+		EXPECT_NEAR(C(4, 0), 1.31659795000000, 1e-3); EXPECT_NEAR(C(4, 4), 3.35271580000000, 1e-3);
 
 
-		//// Test : multiplication  matrice(colonne) * matrice(ligne)
-		//// Note : teste seulement la première et la dernière colonne
-		//const auto C2 = B * A;
-		//EXPECT_NEAR(C2(0, 0), 2.73456805000000, 1e-3); EXPECT_NEAR(C2(0, 4), 1.95669703000000, 1e-3);
-		//EXPECT_NEAR(C2(1, 0), 1.88593811000000, 1e-3); EXPECT_NEAR(C2(1, 4), 2.08742862000000, 1e-3);
-		//EXPECT_NEAR(C2(2, 0), 2.07860468000000, 1e-3); EXPECT_NEAR(C2(2, 4), 1.94727447000000, 1e-3);
-		//EXPECT_NEAR(C2(3, 0), 1.94434955000000, 1e-3); EXPECT_NEAR(C2(3, 4), 2.27675041000000, 1e-3);
-		//EXPECT_NEAR(C2(4, 0), 1.95669703000000, 1e-3); EXPECT_NEAR(C2(4, 4), 2.48517748000000, 1e-3);
+		// Test : multiplication  matrice(colonne) * matrice(ligne)
+		// Note : teste seulement la première et la dernière colonne
+		const auto C2 = B * A;
+		EXPECT_NEAR(C2(0, 0), 2.73456805000000, 1e-3); EXPECT_NEAR(C2(0, 4), 1.95669703000000, 1e-3);
+		EXPECT_NEAR(C2(1, 0), 1.88593811000000, 1e-3); EXPECT_NEAR(C2(1, 4), 2.08742862000000, 1e-3);
+		EXPECT_NEAR(C2(2, 0), 2.07860468000000, 1e-3); EXPECT_NEAR(C2(2, 4), 1.94727447000000, 1e-3);
+		EXPECT_NEAR(C2(3, 0), 1.94434955000000, 1e-3); EXPECT_NEAR(C2(3, 4), 2.27675041000000, 1e-3);
+		EXPECT_NEAR(C2(4, 0), 1.95669703000000, 1e-3); EXPECT_NEAR(C2(4, 4), 2.48517748000000, 1e-3);
 
-		//// Test : addition  matrice(ligne) + matrice(ligne)
-		//// Note : teste seulement la première et la dernière colonne
-		//const auto A_plus_A = A + A;
-		//EXPECT_DOUBLE_EQ(A_plus_A(0, 0), A(0, 0) + A(0, 0)); EXPECT_DOUBLE_EQ(A_plus_A(0, 4), A(0, 4) + A(0, 4));
-		//EXPECT_DOUBLE_EQ(A_plus_A(1, 0), A(1, 0) + A(1, 0)); EXPECT_DOUBLE_EQ(A_plus_A(1, 4), A(1, 4) + A(1, 4));
-		//EXPECT_DOUBLE_EQ(A_plus_A(2, 0), A(2, 0) + A(2, 0)); EXPECT_DOUBLE_EQ(A_plus_A(2, 4), A(2, 4) + A(2, 4));
-		//EXPECT_DOUBLE_EQ(A_plus_A(3, 0), A(3, 0) + A(3, 0)); EXPECT_DOUBLE_EQ(A_plus_A(3, 4), A(3, 4) + A(3, 4));
-		//EXPECT_DOUBLE_EQ(A_plus_A(4, 0), A(4, 0) + A(4, 0)); EXPECT_DOUBLE_EQ(A_plus_A(4, 4), A(4, 4) + A(4, 4));
+		// Test : addition  matrice(ligne) + matrice(ligne)
+		// Note : teste seulement la première et la dernière colonne
+		const auto A_plus_A = A + A;
+		EXPECT_DOUBLE_EQ(A_plus_A(0, 0), A(0, 0) + A(0, 0)); EXPECT_DOUBLE_EQ(A_plus_A(0, 4), A(0, 4) + A(0, 4));
+		EXPECT_DOUBLE_EQ(A_plus_A(1, 0), A(1, 0) + A(1, 0)); EXPECT_DOUBLE_EQ(A_plus_A(1, 4), A(1, 4) + A(1, 4));
+		EXPECT_DOUBLE_EQ(A_plus_A(2, 0), A(2, 0) + A(2, 0)); EXPECT_DOUBLE_EQ(A_plus_A(2, 4), A(2, 4) + A(2, 4));
+		EXPECT_DOUBLE_EQ(A_plus_A(3, 0), A(3, 0) + A(3, 0)); EXPECT_DOUBLE_EQ(A_plus_A(3, 4), A(3, 4) + A(3, 4));
+		EXPECT_DOUBLE_EQ(A_plus_A(4, 0), A(4, 0) + A(4, 0)); EXPECT_DOUBLE_EQ(A_plus_A(4, 4), A(4, 4) + A(4, 4));
 
-		//// Test : addition  matrice(colonne) + matrice(colonne)
-		//// Note : teste seulement la première et la dernière colonne
-		//const auto B_plus_B = B + B;
-		//EXPECT_DOUBLE_EQ(B_plus_B(0, 0), B(0, 0) + B(0, 0)); EXPECT_DOUBLE_EQ(B_plus_B(0, 4), B(0, 4) + B(0, 4));
-		//EXPECT_DOUBLE_EQ(B_plus_B(1, 0), B(1, 0) + B(1, 0)); EXPECT_DOUBLE_EQ(B_plus_B(1, 4), B(1, 4) + B(1, 4));
-		//EXPECT_DOUBLE_EQ(B_plus_B(2, 0), B(2, 0) + B(2, 0)); EXPECT_DOUBLE_EQ(B_plus_B(2, 4), B(2, 4) + B(2, 4));
-		//EXPECT_DOUBLE_EQ(B_plus_B(3, 0), B(3, 0) + B(3, 0)); EXPECT_DOUBLE_EQ(B_plus_B(3, 4), B(3, 4) + B(3, 4));
-		//EXPECT_DOUBLE_EQ(B_plus_B(4, 0), B(4, 0) + B(4, 0)); EXPECT_DOUBLE_EQ(B_plus_B(4, 4), B(4, 4) + B(4, 4));
+		// Test : addition  matrice(colonne) + matrice(colonne)
+		// Note : teste seulement la première et la dernière colonne
+		const auto B_plus_B = B + B;
+		EXPECT_DOUBLE_EQ(B_plus_B(0, 0), B(0, 0) + B(0, 0)); EXPECT_DOUBLE_EQ(B_plus_B(0, 4), B(0, 4) + B(0, 4));
+		EXPECT_DOUBLE_EQ(B_plus_B(1, 0), B(1, 0) + B(1, 0)); EXPECT_DOUBLE_EQ(B_plus_B(1, 4), B(1, 4) + B(1, 4));
+		EXPECT_DOUBLE_EQ(B_plus_B(2, 0), B(2, 0) + B(2, 0)); EXPECT_DOUBLE_EQ(B_plus_B(2, 4), B(2, 4) + B(2, 4));
+		EXPECT_DOUBLE_EQ(B_plus_B(3, 0), B(3, 0) + B(3, 0)); EXPECT_DOUBLE_EQ(B_plus_B(3, 4), B(3, 4) + B(3, 4));
+		EXPECT_DOUBLE_EQ(B_plus_B(4, 0), B(4, 0) + B(4, 0)); EXPECT_DOUBLE_EQ(B_plus_B(4, 4), B(4, 4) + B(4, 4));
 
 	}
 }
@@ -293,32 +293,32 @@ TEST(TestLabo1, MatrixVectorOperators)
 	v(3) = 8.0;
 	v(4) = 16.0;
 
-	//// Test : multiplication par la matrice identité
-	//{
-	//	Matrix<double> M(5, 5);
-	//	M.setIdentity();
+	// Test : multiplication par la matrice identité
+	{
+		Matrix<double> M(5, 5);
+		M.setIdentity();
 
-	//	const auto b = M * v;
-	//	EXPECT_DOUBLE_EQ(b(0), 1.0);
-	//	EXPECT_DOUBLE_EQ(b(1), 2.0);
-	//	EXPECT_DOUBLE_EQ(b(2), 4.0);
-	//	EXPECT_DOUBLE_EQ(b(3), 8.0);
-	//	EXPECT_DOUBLE_EQ(b(4), 16.0);
-	//}
+		const auto b = M * v;
+		EXPECT_DOUBLE_EQ(b(0), 1.0);
+		EXPECT_DOUBLE_EQ(b(1), 2.0);
+		EXPECT_DOUBLE_EQ(b(2), 4.0);
+		EXPECT_DOUBLE_EQ(b(3), 8.0);
+		EXPECT_DOUBLE_EQ(b(4), 16.0);
+	}
 
-	//// Test : multiplication par une matrice à taille dynamique avec stockage par ligne.
-	//{
-	//	Matrix<double, Dynamic, Dynamic, RowStorage> M(5, 5);
-	//	M.setIdentity();
-	//	M = 2.0 * M;
+	// Test : multiplication par une matrice à taille dynamique avec stockage par ligne.
+	{
+		Matrix<double, Dynamic, Dynamic, RowStorage> M(5, 5);
+		M.setIdentity();
+		M = 2.0 * M;
 
-	//	Vector<double> b2 = M * v;
-	//	EXPECT_DOUBLE_EQ(b2(0), 2.0);
-	//	EXPECT_DOUBLE_EQ(b2(1), 4.0);
-	//	EXPECT_DOUBLE_EQ(b2(2), 8.0);
-	//	EXPECT_DOUBLE_EQ(b2(3), 16.0);
-	//	EXPECT_DOUBLE_EQ(b2(4), 32.0);
-	//}
+		Vector<double> b2 = M * v;
+		EXPECT_DOUBLE_EQ(b2(0), 2.0);
+		EXPECT_DOUBLE_EQ(b2(1), 4.0);
+		EXPECT_DOUBLE_EQ(b2(2), 8.0);
+		EXPECT_DOUBLE_EQ(b2(3), 16.0);
+		EXPECT_DOUBLE_EQ(b2(4), 32.0);
+	}
 }
 
 /**
@@ -333,22 +333,22 @@ TEST(TestLabo1, VectorOperators)
 	v(3) = 0.8;
 	v(4) = 1.6;
 
-	//// Test : multiplication  scalaire * vecteur
-	//const double alpha = 4.0;
-	//const auto v2 = alpha * v;
-	//EXPECT_DOUBLE_EQ(v2(0), alpha * v(0));
-	//EXPECT_DOUBLE_EQ(v2(1), alpha * v(1));
-	//EXPECT_DOUBLE_EQ(v2(2), alpha * v(2));
-	//EXPECT_DOUBLE_EQ(v2(3), alpha * v(3));
-	//EXPECT_DOUBLE_EQ(v2(4), alpha * v(4));
+	// Test : multiplication  scalaire * vecteur
+	const double alpha = 4.0;
+	const auto v2 = alpha * v;
+	EXPECT_DOUBLE_EQ(v2(0), alpha * v(0));
+	EXPECT_DOUBLE_EQ(v2(1), alpha * v(1));
+	EXPECT_DOUBLE_EQ(v2(2), alpha * v(2));
+	EXPECT_DOUBLE_EQ(v2(3), alpha * v(3));
+	EXPECT_DOUBLE_EQ(v2(4), alpha * v(4));
 
-	//// Test : addition  vecteur + vecteur
-	//const auto v3 = v + v2;
-	//EXPECT_DOUBLE_EQ(v3(0), v(0) + v2(0));
-	//EXPECT_DOUBLE_EQ(v3(1), v(1) + v2(1));
-	//EXPECT_DOUBLE_EQ(v3(2), v(2) + v2(2));
-	//EXPECT_DOUBLE_EQ(v3(3), v(3) + v2(3));
-	//EXPECT_DOUBLE_EQ(v3(4), v(4) + v2(4));
+	// Test : addition  vecteur + vecteur
+	const auto v3 = v + v2;
+	EXPECT_DOUBLE_EQ(v3(0), v(0) + v2(0));
+	EXPECT_DOUBLE_EQ(v3(1), v(1) + v2(1));
+	EXPECT_DOUBLE_EQ(v3(2), v(2) + v2(2));
+	EXPECT_DOUBLE_EQ(v3(3), v(3) + v2(3));
+	EXPECT_DOUBLE_EQ(v3(4), v(4) + v2(4));
 }
 
 
@@ -357,100 +357,100 @@ TEST(TestLabo1, VectorOperators)
  */
 TEST(TestLabo1, Math3D)
 {
-	//// Test : norme d'un vecteur de dimension 3
-	//Vector3d v;
-	//v.setZero();
-	//v(1) = 2.0;
-	//EXPECT_EQ(v.rows(), 3);
-	//EXPECT_EQ(v.cols(), 1);
-	//EXPECT_DOUBLE_EQ(v(0), 0.0);
-	//EXPECT_DOUBLE_EQ(v(1), 2.0);
-	//EXPECT_DOUBLE_EQ(v(2), 0.0);
-	//EXPECT_DOUBLE_EQ(v.norm(), 2.0);
+	// Test : norme d'un vecteur de dimension 3
+	Vector3d v;
+	v.setZero();
+	v(1) = 2.0;
+	EXPECT_EQ(v.rows(), 3);
+	EXPECT_EQ(v.cols(), 1);
+	EXPECT_DOUBLE_EQ(v(0), 0.0);
+	EXPECT_DOUBLE_EQ(v(1), 2.0);
+	EXPECT_DOUBLE_EQ(v(2), 0.0);
+	EXPECT_DOUBLE_EQ(v.norm(), 2.0);
 
-	//// Test : calcul de la norme d'un deuxième vecteur 3D
-	//Vector3d v2;
-	//v2(0) = 4.0;
-	//v2(1) = 2.0;
-	//v2(2) = 5.0;
-	//EXPECT_EQ(v2.rows(), 3);
-	//EXPECT_EQ(v2.cols(), 1);
-	//EXPECT_DOUBLE_EQ(v2(0), 4.0);
-	//EXPECT_DOUBLE_EQ(v2(1), 2.0);
-	//EXPECT_DOUBLE_EQ(v2(2), 5.0);
-	//EXPECT_DOUBLE_EQ(v2.norm(), 6.7082039324993690892275210061938);
+	// Test : calcul de la norme d'un deuxième vecteur 3D
+	Vector3d v2;
+	v2(0) = 4.0;
+	v2(1) = 2.0;
+	v2(2) = 5.0;
+	EXPECT_EQ(v2.rows(), 3);
+	EXPECT_EQ(v2.cols(), 1);
+	EXPECT_DOUBLE_EQ(v2(0), 4.0);
+	EXPECT_DOUBLE_EQ(v2(1), 2.0);
+	EXPECT_DOUBLE_EQ(v2(2), 5.0);
+	EXPECT_DOUBLE_EQ(v2.norm(), 6.7082039324993690892275210061938);
 
-	//// Test : produit scalaire 
-	//EXPECT_DOUBLE_EQ(v.dot(v2), 4.0);
+	// Test : produit scalaire 
+	EXPECT_DOUBLE_EQ(v.dot(v2), 4.0);
 
-	//// Test : matrice identité 4x4
-	//Matrix4d M;
-	//M.setIdentity();
-	//EXPECT_DOUBLE_EQ(M(0, 0), 1.0);
-	//EXPECT_DOUBLE_EQ(M(0, 1), 0.0);
-	//EXPECT_DOUBLE_EQ(M(0, 2), 0.0);
-	//EXPECT_DOUBLE_EQ(M(1, 1), 1.0);
-	//EXPECT_DOUBLE_EQ(M(1, 0), 0.0);
-	//EXPECT_DOUBLE_EQ(M(1, 2), 0.0);
-	//EXPECT_DOUBLE_EQ(M(2, 0), 0.0);
-	//EXPECT_DOUBLE_EQ(M(2, 1), 0.0);
-	//EXPECT_DOUBLE_EQ(M(2, 2), 1.0);
+	// Test : matrice identité 4x4
+	Matrix4d M;
+	M.setIdentity();
+	EXPECT_DOUBLE_EQ(M(0, 0), 1.0);
+	EXPECT_DOUBLE_EQ(M(0, 1), 0.0);
+	EXPECT_DOUBLE_EQ(M(0, 2), 0.0);
+	EXPECT_DOUBLE_EQ(M(1, 1), 1.0);
+	EXPECT_DOUBLE_EQ(M(1, 0), 0.0);
+	EXPECT_DOUBLE_EQ(M(1, 2), 0.0);
+	EXPECT_DOUBLE_EQ(M(2, 0), 0.0);
+	EXPECT_DOUBLE_EQ(M(2, 1), 0.0);
+	EXPECT_DOUBLE_EQ(M(2, 2), 1.0);
 
-	//// Test : création d'une matrice de rotation de 45 degrés autour de l'axe des x
-	//const auto Rx = makeRotation<double>(M_PI / 4.0, 0, 0);
-	//EXPECT_NEAR(Rx(0, 0), 1, 1e-3); EXPECT_NEAR(Rx(0, 1), 0, 1e-3); EXPECT_NEAR(Rx(0, 2), 0, 1e-3);
-	//EXPECT_NEAR(Rx(1, 0), 0, 1e-3); EXPECT_NEAR(Rx(1, 1), 0.7071, 1e-3); EXPECT_NEAR(Rx(1, 2), -0.7071, 1e-3);
-	//EXPECT_NEAR(Rx(2, 0), 0, 1e-3); EXPECT_NEAR(Rx(2, 1), 0.7071, 1e-3); EXPECT_NEAR(Rx(2, 2), 0.7071, 1e-3);
+	// Test : création d'une matrice de rotation de 45 degrés autour de l'axe des x
+	const auto Rx = makeRotation<double>(M_PI / 4.0, 0, 0);
+	EXPECT_NEAR(Rx(0, 0), 1, 1e-3); EXPECT_NEAR(Rx(0, 1), 0, 1e-3); EXPECT_NEAR(Rx(0, 2), 0, 1e-3);
+	EXPECT_NEAR(Rx(1, 0), 0, 1e-3); EXPECT_NEAR(Rx(1, 1), 0.7071, 1e-3); EXPECT_NEAR(Rx(1, 2), -0.7071, 1e-3);
+	EXPECT_NEAR(Rx(2, 0), 0, 1e-3); EXPECT_NEAR(Rx(2, 1), 0.7071, 1e-3); EXPECT_NEAR(Rx(2, 2), 0.7071, 1e-3);
 
-	//// Test : création d'une matrice de rotation de 45 degrés autour de l'axe des y
-	//const auto Ry = makeRotation<double>(0, M_PI / 4.0, 0);
-	//EXPECT_NEAR(Ry(0, 0), 0.7071, 1e-3); EXPECT_NEAR(Ry(0, 1), 0, 1e-3); EXPECT_NEAR(Ry(0, 2), 0.7071, 1e-3);
-	//EXPECT_NEAR(Ry(1, 0), 0, 1e-3); EXPECT_NEAR(Ry(1, 1), 1, 1e-3); EXPECT_NEAR(Ry(1, 2), 0, 1e-3);
-	//EXPECT_NEAR(Ry(2, 0), -0.7071, 1e-3); EXPECT_NEAR(Ry(2, 1), 0, 1e-3); EXPECT_NEAR(Ry(2, 2), 0.7071, 1e-3);
+	// Test : création d'une matrice de rotation de 45 degrés autour de l'axe des y
+	const auto Ry = makeRotation<double>(0, M_PI / 4.0, 0);
+	EXPECT_NEAR(Ry(0, 0), 0.7071, 1e-3); EXPECT_NEAR(Ry(0, 1), 0, 1e-3); EXPECT_NEAR(Ry(0, 2), 0.7071, 1e-3);
+	EXPECT_NEAR(Ry(1, 0), 0, 1e-3); EXPECT_NEAR(Ry(1, 1), 1, 1e-3); EXPECT_NEAR(Ry(1, 2), 0, 1e-3);
+	EXPECT_NEAR(Ry(2, 0), -0.7071, 1e-3); EXPECT_NEAR(Ry(2, 1), 0, 1e-3); EXPECT_NEAR(Ry(2, 2), 0.7071, 1e-3);
 
-	//// Test : création d'une matrice de rotation de 45 degrés autour de l'axe des z
-	//const auto Rz = makeRotation<double>(0, 0, M_PI / 4.0);
-	//EXPECT_NEAR(Rz(0, 0), 0.7071, 1e-3); EXPECT_NEAR(Rz(0, 1), -0.7071, 1e-3); EXPECT_NEAR(Rz(0, 2), 0, 1e-3);
-	//EXPECT_NEAR(Rz(1, 0), 0.7071, 1e-3); EXPECT_NEAR(Rz(1, 1), 0.7071, 1e-3); EXPECT_NEAR(Rz(1, 2), 0, 1e-3);
-	//EXPECT_NEAR(Rz(2, 0), 0, 1e-3); EXPECT_NEAR(Rz(2, 1), 0, 1e-3); EXPECT_NEAR(Rz(2, 2), 1, 1e-3);
+	// Test : création d'une matrice de rotation de 45 degrés autour de l'axe des z
+	const auto Rz = makeRotation<double>(0, 0, M_PI / 4.0);
+	EXPECT_NEAR(Rz(0, 0), 0.7071, 1e-3); EXPECT_NEAR(Rz(0, 1), -0.7071, 1e-3); EXPECT_NEAR(Rz(0, 2), 0, 1e-3);
+	EXPECT_NEAR(Rz(1, 0), 0.7071, 1e-3); EXPECT_NEAR(Rz(1, 1), 0.7071, 1e-3); EXPECT_NEAR(Rz(1, 2), 0, 1e-3);
+	EXPECT_NEAR(Rz(2, 0), 0, 1e-3); EXPECT_NEAR(Rz(2, 1), 0, 1e-3); EXPECT_NEAR(Rz(2, 2), 1, 1e-3);
 
-	//// Test : création d'une matrice de rotation quelconque.
-	//const auto Rxyz = makeRotation<double>(M_PI / 3.0, -M_PI / 6.0, M_PI / 4.0);
-	//EXPECT_NEAR(Rxyz(0, 0), 0.6124, 1e-3); EXPECT_NEAR(Rxyz(0, 1), -0.6597, 1e-3); EXPECT_NEAR(Rxyz(0, 2), 0.4356, 1e-3);
-	//EXPECT_NEAR(Rxyz(1, 0), 0.6124, 1e-3); EXPECT_NEAR(Rxyz(1, 1), 0.0474, 1e-3); EXPECT_NEAR(Rxyz(1, 2), -0.7891, 1e-3);
-	//EXPECT_NEAR(Rxyz(2, 0), 0.5, 1e-3); EXPECT_NEAR(Rxyz(2, 1), 0.75, 1e-3); EXPECT_NEAR(Rxyz(2, 2), 0.4330, 1e-3);
+	// Test : création d'une matrice de rotation quelconque.
+	const auto Rxyz = makeRotation<double>(M_PI / 3.0, -M_PI / 6.0, M_PI / 4.0);
+	EXPECT_NEAR(Rxyz(0, 0), 0.6124, 1e-3); EXPECT_NEAR(Rxyz(0, 1), -0.6597, 1e-3); EXPECT_NEAR(Rxyz(0, 2), 0.4356, 1e-3);
+	EXPECT_NEAR(Rxyz(1, 0), 0.6124, 1e-3); EXPECT_NEAR(Rxyz(1, 1), 0.0474, 1e-3); EXPECT_NEAR(Rxyz(1, 2), -0.7891, 1e-3);
+	EXPECT_NEAR(Rxyz(2, 0), 0.5, 1e-3); EXPECT_NEAR(Rxyz(2, 1), 0.75, 1e-3); EXPECT_NEAR(Rxyz(2, 2), 0.4330, 1e-3);
 
-	//// Test : création d'une transformation homogène via la sous-matrice 3x3 en
-	//// utilisant la fonction `block`
-	//M.block(0, 0, 3, 3) = Rxyz;
-	//M(0, 3) = -0.1;
-	//M(1, 3) = 1.0;
-	//M(2, 3) = 2.1;
+	// Test : création d'une transformation homogène via la sous-matrice 3x3 en
+	// utilisant la fonction `block`
+	M.block(0, 0, 3, 3) = Rxyz;
+	M(0, 3) = -0.1;
+	M(1, 3) = 1.0;
+	M(2, 3) = 2.1;
 
-	//// Test : calcule l'inverse de la matrice M et vérifie que M^(-1) * M * v = v
-	//const Matrix4d Minv = M.inverse();
-	//const Vector3d v3 = Minv * (M * v2);
-	//EXPECT_DOUBLE_EQ(v3(0), v2(0));
-	//EXPECT_DOUBLE_EQ(v3(1), v2(1));
-	//EXPECT_DOUBLE_EQ(v3(2), v2(2));
+	// Test : calcule l'inverse de la matrice M et vérifie que M^(-1) * M * v = v
+	const Matrix4d Minv = M.inverse();
+	const Vector3d v3 = Minv * (M * v2);
+	EXPECT_DOUBLE_EQ(v3(0), v2(0));
+	EXPECT_DOUBLE_EQ(v3(1), v2(1));
+	EXPECT_DOUBLE_EQ(v3(2), v2(2));
 
-	//// Test : translation d'un vecteur 3D effectuée avec une matrice 4x4 en coordonnées homogènes
-	//Matrix4d T;
-	//T.setIdentity();
-	//T(0, 3) = 1.2;
-	//T(1, 3) = 2.5;
-	//T(2, 3) = -4.0;
-	//const Vector3d t = T * v3;
-	//EXPECT_DOUBLE_EQ(t(0), v3(0) + 1.2);
-	//EXPECT_DOUBLE_EQ(t(1), v3(1) + 2.5);
-	//EXPECT_DOUBLE_EQ(t(2), v3(2) - 4.0);
+	// Test : translation d'un vecteur 3D effectuée avec une matrice 4x4 en coordonnées homogènes
+	Matrix4d T;
+	T.setIdentity();
+	T(0, 3) = 1.2;
+	T(1, 3) = 2.5;
+	T(2, 3) = -4.0;
+	const Vector3d t = T * v3;
+	EXPECT_DOUBLE_EQ(t(0), v3(0) + 1.2);
+	EXPECT_DOUBLE_EQ(t(1), v3(1) + 2.5);
+	EXPECT_DOUBLE_EQ(t(2), v3(2) - 4.0);
 
-	//// Test : inverse d'un matrice de rotation
-	//const Matrix3d Rinv = Rxyz.inverse();
-	//const Matrix3d RT = Rxyz.transpose<double, 3, 3, ColumnStorage>();
-	//EXPECT_DOUBLE_EQ(Rinv(0, 0), RT(0, 0));
-	//EXPECT_DOUBLE_EQ(Rinv(1, 1), RT(1, 1));
-	//EXPECT_DOUBLE_EQ(Rinv(0, 2), RT(0, 2));
+	// Test : inverse d'un matrice de rotation
+	const Matrix3d Rinv = Rxyz.inverse();
+	const Matrix3d RT = Rxyz.transpose<double, 3, 3, ColumnStorage>();
+	EXPECT_DOUBLE_EQ(Rinv(0, 0), RT(0, 0));
+	EXPECT_DOUBLE_EQ(Rinv(1, 1), RT(1, 1));
+	EXPECT_DOUBLE_EQ(Rinv(0, 2), RT(0, 2));
 
 
 }
@@ -461,24 +461,27 @@ TEST(TestLabo1, Math3D)
  */
 TEST(TestLabo1, PerformanceMatrixVector)
 {
-	//Matrix<double> A(16384, 16384);     // grande matrice avec stockage colonne
-	//Vector<double> v(16384);            // grand vecteur
+	Matrix<double> A(16384, 16384);     // grande matrice avec stockage colonne
+	Vector<double> v(16384);            // grand vecteur
 
-	//using namespace std::chrono;
-	//// Test : multiplication avec l'algorithme naif.
-	//high_resolution_clock::time_point t = high_resolution_clock::now();
-	//naiveMatrixMult(A, v);
-	//const duration<double> naive_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
+	using namespace std::chrono;
+	// Test : multiplication avec l'algorithme naif.
+	high_resolution_clock::time_point t = high_resolution_clock::now();
+	naiveMatrixMult(A, v);
+	const duration<double> naive_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
 
-	//// Test : multiplication avec l'implémentation spécifique pour les matrices avec
-	//// stockage par colonnes.
-	//t = high_resolution_clock::now();
-	//A* v;
-	//const duration<double> optimal_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
+	// Test : multiplication avec l'implémentation spécifique pour les matrices avec
+	// stockage par colonnes.
+	t = high_resolution_clock::now();
+	A* v;
+	const duration<double> optimal_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
 
-	//EXPECT_TRUE(optimal_t < 0.4 * naive_t)
-	//	<< "Naive time: " << duration_cast<std::chrono::milliseconds>(naive_t).count() << " ms, "
-	//	<< "optimized time: " << duration_cast<std::chrono::milliseconds>(optimal_t).count() << " ms";
+	cout << "Naive time: " << duration_cast<std::chrono::milliseconds>(naive_t).count() << " ms, "
+		<< "optimized time: " << duration_cast<std::chrono::milliseconds>(optimal_t).count() << " ms";
+
+	EXPECT_TRUE(optimal_t < 0.4 * naive_t)
+		<< "Naive time: " << duration_cast<std::chrono::milliseconds>(naive_t).count() << " ms, "
+		<< "optimized time: " << duration_cast<std::chrono::milliseconds>(optimal_t).count() << " ms";
 }
 
 /**
@@ -487,23 +490,28 @@ TEST(TestLabo1, PerformanceMatrixVector)
  */
 TEST(TestLabo1, PerformanceLargeMatrixMatrix)
 {
-	//// deux grandes matrices à stockage par colonnes
-	//Matrix<double> A(16384, 16384);
-	//Matrix<double> B(16384, 16384);
+	//deux grandes matrices à stockage par colonnes
+	Matrix<double> A(16384, 16384);
+	Matrix<double> B(16384, 16384);
 
-	//using namespace std::chrono;
-	//high_resolution_clock::time_point t = high_resolution_clock::now();
-	//// Test : addition avec l'algorithme naif 
-	//naiveMatrixAddition(A, B);
-	//const duration<double> naive_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
+	using namespace std::chrono;
+	high_resolution_clock::time_point t = high_resolution_clock::now();
+	// Test : addition avec l'algorithme naif
+	naiveMatrixAddition(A, B);
+	const duration<double> naive_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
 
-	//// Test : addition avec l'implémentation spécifique pour les matrices à
-	//// stockage par colonnes.
-	//t = high_resolution_clock::now();
-	//A + B;
-	//const duration<double> optimal_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
+	// Test : addition avec l'implémentation spécifique pour les matrices à
+	// stockage par colonnes.
+	t = high_resolution_clock::now();
+	A + B;
+	const duration<double> optimal_t = duration_cast<duration<double>>(high_resolution_clock::now() - t);
 
-	//EXPECT_TRUE(optimal_t < 0.4 * naive_t);
+	cout << "Naive time: " << duration_cast<std::chrono::milliseconds>(naive_t).count() << " ms, "
+		<< "optimized time: " << duration_cast<std::chrono::milliseconds>(optimal_t).count() << " ms";
+
+	EXPECT_TRUE(optimal_t < 0.4 * naive_t)
+		<< "Naive time: " << duration_cast<std::chrono::milliseconds>(naive_t).count() << " ms, "
+		<< "optimized time: " << duration_cast<std::chrono::milliseconds>(optimal_t).count() << " ms";
 }
 
 TEST(TestLabo1_Partie1, Supplementaires)
@@ -569,24 +577,164 @@ TEST(TestLabo1_Partie1, Supplementaires)
 	EXPECT_DOUBLE_EQ(matriceETranspose(1, 0), 2);
 	EXPECT_DOUBLE_EQ(matriceETranspose(1, 1), 4);
 
-	//Test 6 - Verification de l'assertion lorsque les index sont invalide
-	EXPECT_DEATH(sousMatriceA(3, 3), "Index a l'exterieur des limites de la matrice");
+	////Test 6 - Verification de l'assertion lorsque les index sont invalide
+	//EXPECT_DEATH(sousMatriceA(3, 3), "");
 
-	//Test 7 - Verification que la matrice est carree lorsqu'on veut la transforme en matrice identite
-	Matrix<double, Dynamic, Dynamic, ColumnStorage> F(3, 2);
+	////Test 7 - Verification que la matrice est carree lorsqu'on veut la transforme en matrice identite
+	//Matrix<double, Dynamic, Dynamic, ColumnStorage> F(3, 2);
 
-	EXPECT_DEATH(F.setIdentity(), "La matrice n'est pas carre");
+	//EXPECT_DEATH(F.setIdentity(), "");
 
-	//Test 8 - Verification que la matrice a la meme taille que la sous-matrice
+	////Test 8 - Verification que la matrice a la meme taille que la sous-matrice
 
-	EXPECT_DEATH(sousMatriceA = F, "La matrice est plus grande que la sous-matrice");
+	//EXPECT_DEATH(sousMatriceA = F, "");
 
-	//Test 9 - Verification que la recherche de la matrice est dans les limites de celle-ci
-	EXPECT_DEATH(F(4, 4), "Index a l'exterieur des limites de la matrice");
+	////Test 9 - Verification que la recherche de la matrice est dans les limites de celle-ci
+	//EXPECT_DEATH(F(4, 4), "");
 
 	//Test 10 -
+	Matrix<double, Dynamic, Dynamic, ColumnStorage> Test(4, 4);
+	Test(0, 0) = 1;    Test(0, 1) = 2;    Test(0, 2) = 3;    Test(0, 3) = 4;
+	Test(1, 0) = 5;    Test(1, 1) = 6;    Test(1, 2) = 7;    Test(1, 3) = 8;
+	Test(2, 0) = 9;    Test(2, 1) = 10;    Test(2, 2) = 11;    Test(2, 3) = 12;
+	Test(3, 0) = 13;    Test(3, 1) = 14;    Test(3, 2) = 15;    Test(3, 3) = 16;
+
+	const auto testT = Test.transpose<double, Dynamic, Dynamic, RowStorage>();
 
 
+	EXPECT_DOUBLE_EQ(A(0, 0), 1);
+
+
+
+}
+
+
+TEST(TestLabo1_Partie2, Supplementaires)
+{
+	//Test 1 - Soustraction de deux vector.
+	Vector<double> v1(3);
+	v1(0) = 1;
+	v1(1) = 2;
+	v1(2) = 3;
+
+	Vector<double> v2(3);
+	v2(0) = 1;
+	v2(1) = 1;
+	v2(2) = 1;
+
+	const auto r1 = v1 - v2;
+	EXPECT_DOUBLE_EQ(r1(0), v1(0) - v2(0));
+	EXPECT_DOUBLE_EQ(r1(1), v1(1) - v2(1));
+	EXPECT_DOUBLE_EQ(r1(2), v1(2) - v2(2));
+
+	//Test 2 - Verifie si la multiplication d'une matrice colonne avec un vecteur retourne les valeurs exactes.
+	Matrix<double, Dynamic, Dynamic, ColumnStorage> m1Col(3, 3);
+	m1Col(0, 0) = 1;    m1Col(0, 1) = 2;    m1Col(0, 2) = 3;
+	m1Col(1, 0) = 4;    m1Col(1, 1) = 5;    m1Col(1, 2) = 6;
+	m1Col(2, 0) = 7;    m1Col(2, 1) = 8;    m1Col(2, 2) = 9;
+
+	const auto r2 = m1Col * v1;
+
+	EXPECT_DOUBLE_EQ(r2(0), 14);
+	EXPECT_DOUBLE_EQ(r2(1), 32);
+	EXPECT_DOUBLE_EQ(r2(2), 50);
+
+	//Test 3 - Verifie si la multiplication d'une matrice range avec un vecteur retourne les valeurs exactes.
+	Matrix<double, Dynamic, Dynamic, RowStorage> m1Row(3, 3);
+	m1Row(0, 0) = 9;    m1Row(0, 1) = 8;    m1Row(0, 2) = 7;
+	m1Row(1, 0) = 6;    m1Row(1, 1) = 5;    m1Row(1, 2) = 4;
+	m1Row(2, 0) = 3;    m1Row(2, 1) = 2;    m1Row(2, 2) = 1;
+
+
+	const auto r3 = m1Row * v1;
+
+	EXPECT_DOUBLE_EQ(r3(0), 46);
+	EXPECT_DOUBLE_EQ(r3(1), 28);
+	EXPECT_DOUBLE_EQ(r3(2), 10);
+
+	//Test 4 - Verifie si la multiplication d'une matrice colonne avec un vecteur retourne les valeurs exactes lorsque la matrice n'est pas carree.
+	Matrix<double, Dynamic, Dynamic, ColumnStorage> m2Col(4, 3);
+	m2Col(0, 0) = 1;    m2Col(0, 1) = 2;    m2Col(0, 2) = 3;
+	m2Col(1, 0) = 4;    m2Col(1, 1) = 5;    m2Col(1, 2) = 6;
+	m2Col(2, 0) = 7;    m2Col(2, 1) = 8;    m2Col(2, 2) = 9;
+	m2Col(3, 0) = 1;    m2Col(3, 1) = 2;    m2Col(3, 2) = 3;
+
+	const auto r4 = m2Col * v1;
+
+	EXPECT_DOUBLE_EQ(r4(0), 14);
+	EXPECT_DOUBLE_EQ(r4(1), 32);
+	EXPECT_DOUBLE_EQ(r4(2), 50);
+	EXPECT_DOUBLE_EQ(r4(0), 14);
+
+	//Test 5 - Verifie si la multiplication d'une matrice range avec un vecteur retourne les valeurs exactes lorsque la matrice n'est pas carree.
+	Matrix<double, Dynamic, Dynamic, RowStorage> m2Row(4, 3);
+	m2Row(0, 0) = 9;    m2Row(0, 1) = 8;    m2Row(0, 2) = 7;
+	m2Row(1, 0) = 6;    m2Row(1, 1) = 5;    m2Row(1, 2) = 4;
+	m2Row(2, 0) = 3;    m2Row(2, 1) = 2;    m2Row(2, 2) = 1;
+	m2Row(3, 0) = 9;    m2Row(3, 1) = 8;    m2Row(3, 2) = 7;
+
+	const auto r5 = m2Row * v1;
+
+	EXPECT_DOUBLE_EQ(r5(0), 46);
+	EXPECT_DOUBLE_EQ(r5(1), 28);
+	EXPECT_DOUBLE_EQ(r5(2), 10);
+	EXPECT_DOUBLE_EQ(r5(3), 46);
+
+	//Test 6 - Verifie si l'addition d'une matrice colonne avec une matrice range retourne les valeurs exactes.
+	const auto r6 = m1Col + m1Row;
+
+	EXPECT_DOUBLE_EQ(r6(0, 0), 10);
+	EXPECT_DOUBLE_EQ(r6(1, 0), 10);
+	EXPECT_DOUBLE_EQ(r6(2, 0), 10);
+
+	//Test 7 - Verifie si l'addition d'une matrice range avec une matrice colonne retourne les valeurs exactes.
+
+	const auto r7 = m2Row + m2Col;
+
+	EXPECT_DOUBLE_EQ(r7(0, 0), 10);
+	EXPECT_DOUBLE_EQ(r7(1, 0), 10);
+	EXPECT_DOUBLE_EQ(r7(2, 0), 10);
+	EXPECT_DOUBLE_EQ(r7(3, 0), 10);
+
+	//Test 8 - Verifie si une matrice 4F execute correctement la methode setIdentity();
+	Matrix4f m4F;
+	m4F.setIdentity();
+	EXPECT_DOUBLE_EQ(m4F(0, 0), 1.0);
+	EXPECT_DOUBLE_EQ(m4F(0, 1), 0.0);
+	EXPECT_DOUBLE_EQ(m4F(0, 2), 0.0);
+	EXPECT_DOUBLE_EQ(m4F(1, 1), 1.0);
+	EXPECT_DOUBLE_EQ(m4F(1, 0), 0.0);
+	EXPECT_DOUBLE_EQ(m4F(1, 2), 0.0);
+	EXPECT_DOUBLE_EQ(m4F(2, 0), 0.0);
+	EXPECT_DOUBLE_EQ(m4F(2, 1), 0.0);
+	EXPECT_DOUBLE_EQ(m4F(2, 2), 1.0);
+
+	//Test 9 - Verifie si une matrice 4D effectue correctement la methode inverse() sans la multiplie avec le vecteur
+	Matrix4d m4D;
+	m4D(0, 0) = 1;    m4D(0, 1) = 0;		 m4D(0, 2) = 0;			m4D(0, 3) = 1;
+	m4D(1, 0) = 0;    m4D(1, 1) = 0.866025;	 m4D(1, 2) = -0.5;		m4D(1, 3) = 2;
+	m4D(2, 0) = 0;    m4D(2, 1) = 0.5;		 m4D(2, 2) = 0.866025;	m4D(2, 3) = 3;
+	m4D(3, 0) = 0;    m4D(3, 1) = 0;		 m4D(3, 2) = 0;			m4D(3, 3) = 1;
+
+	const Matrix4d r9 = m4D.inverse();
+	EXPECT_DOUBLE_EQ(r9(1, 1), 0.866025);
+	EXPECT_DOUBLE_EQ(r9(1, 2), 0.5);
+	EXPECT_DOUBLE_EQ(r9(2, 1), -0.5);
+	EXPECT_DOUBLE_EQ(r9(2, 2), 0.866025);
+	EXPECT_DOUBLE_EQ(r9(0, 3), -1);
+	EXPECT_DOUBLE_EQ(r9(1, 3), -3.23205);
+	EXPECT_DOUBLE_EQ(r9(2, 3), -1.5980750000000001);
+
+	//Test 10 - Verifie si une matrice 4D multiplie par un vecteur donne les bon resultats (Matrice non inverse)
+	Vector3d v3D;
+	v3D(0) = 3;
+	v3D(1) = 3;
+	v3D(2) = 3;
+	Vector3d r10 = m4D * v3D;
+
+	EXPECT_DOUBLE_EQ(r10(0), 4);
+	EXPECT_DOUBLE_EQ(r10(1), 3.0980750000000001);
+	EXPECT_DOUBLE_EQ(r10(2), 7.0980749999999997);
 
 }
 

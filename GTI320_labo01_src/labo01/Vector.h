@@ -53,8 +53,8 @@ namespace gti320 {
 		Vector& operator=(const Vector& other)
 		{
 			// TODO implémenter
-			this->m_storage = other.m_storage;
-			this->rows = other.rows;
+			m_storage = other.m_storage;
+			rows = other.rows;
 			return *this;
 		}
 
@@ -64,7 +64,7 @@ namespace gti320 {
 		_Scalar operator()(int i) const
 		{
 			// TODO implémenter
-			return this->data()[i];
+			return data()[i];
 		}
 
 		/**
@@ -73,7 +73,7 @@ namespace gti320 {
 		_Scalar& operator()(int i)
 		{
 			// TODO implémenter
-			return this->m_storage.data()[i];
+			return m_storage.data()[i];
 		}
 
 		/**
@@ -91,9 +91,9 @@ namespace gti320 {
 		{
 			// TODO implémenter
 			_Scalar resultat = 0;
-			for (size_t i = 0; i < this->size(); i++)
+			for (size_t i = 0; i < size(); i++)
 			{
-				resultat += (this->data()[i] * other.data()[i]);
+				resultat += (data()[i] * other.data()[i]);
 			}
 			return resultat;
 		}
@@ -105,9 +105,9 @@ namespace gti320 {
 		{
 			// TODO implémenter
 			_Scalar resultat = 0;
-			for (size_t i = 0; i < this->size(); i++)
+			for (size_t i = 0; i < size(); i++)
 			{
-				resultat += pow(this->data()[i], 2);
+				resultat += pow(data()[i], 2);
 			}
 			return sqrt(resultat);
 		}
