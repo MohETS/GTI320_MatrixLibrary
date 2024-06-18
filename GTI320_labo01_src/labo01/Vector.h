@@ -54,7 +54,6 @@ namespace gti320 {
 		{
 			// TODO implémenter
 			m_storage = other.m_storage;
-			rows = other.rows;
 			return *this;
 		}
 

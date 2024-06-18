@@ -237,6 +237,7 @@ namespace gti320 {
 		// TODO : implémenter
 		int matrixRows = A.rows(), matrixCols = A.cols();
 		Vector<_Scalar, _Rows> newVector(matrixRows);
+		newVector.setZero();
 
 		for (size_t i = 0; i < matrixRows; ++i)
 		{
@@ -261,6 +262,7 @@ namespace gti320 {
 		// TODO : implémenter
 		int matrixRows = A.rows(), matrixCols = A.cols();
 		Vector<_Scalar, _Rows> newVector(matrixRows);
+		newVector.setZero();
 
 		for (size_t j = 0; j < matrixCols; ++j)
 		{
